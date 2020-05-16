@@ -1,6 +1,6 @@
 import unittest
 
-# include <appname>
+include APPNAME
 
 suite "suite":
   test "test":
