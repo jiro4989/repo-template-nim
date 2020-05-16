@@ -7,7 +7,7 @@ on:
     types: [published]
 
 env:
-  APP_NAME: '<appname>'
+  APP_NAME: 'APPNAME'
 
 jobs:
   skip:

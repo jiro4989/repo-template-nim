@@ -18,7 +18,7 @@ Options:
 proc changeFile(beforeFile, afterFile, appName, author, dt: string) =
   let body =
     readFile(beforeFile)
-      .replace("<appname>", appName)
+      .replace("APPNAME", appName)
       .replace("<author>", author)
       .replace("<date>", dt)
   writeFile(beforeFile, body)
