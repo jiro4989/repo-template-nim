@@ -1,6 +1,6 @@
 import unittest
 
-#include svgo
+include APPNAME
 
 suite "suite":
   test "test":
