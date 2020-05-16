@@ -11,7 +11,8 @@ You must run command at first.
 
 .. code-block:: shell
 
-   nim c -r tool/setup.nim --author:<yourname> --appname:<application_name>
+   nim c tool/setup.nim --author:<yourname> --appname:<application_name>
+   tool/setup
 
 This command replace and rename template strings of this repository.
 
