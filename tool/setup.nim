@@ -7,7 +7,7 @@ proc changeFile(beforeFile, afterFile, appName, author, dt: string) =
       .replace("<author>", author)
       .replace("<date>", dt)
   writeFile(beforeFile, body)
-  echo &"'<appname>', <author>, <date>. of {beforeFile} was replaced."
+  echo &"{beforeFile} was replaced."
 
   if afterFile == "": return
   moveFile(beforeFile, afterFile)
