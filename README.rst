@@ -35,16 +35,6 @@ LICENSE
 
 MIT
 
-Developmen
-==========
-
-Release
--------
-
-`haya14busa/action-bumpr <https://github.com/haya14busa/action-bumpr>`_
-
-You can bump version on merging Pull Requests with specific labels ( ``bump:major`` , ``bump:minor`` , ``bump:patch`` ). Pushing tag manually by yourself also work.
-
 .. |gh-actions| image:: https://github.com/jiro4989/APPNAME/workflows/build/badge.svg
    :target: https://github.com/jiro4989/APPNAME/actions
 .. |nimble-version| image:: https://nimble.directory/ci/badges/APPNAME/version.svg
