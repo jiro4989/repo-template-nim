@@ -5,7 +5,15 @@
 |nimble-version| |nimble-install| |gh-actions|
 
 TODO
+
 This is a Nim project template.
+You must run command at first.
+
+.. code-block:: shell
+
+   nim c -r tool/setup.nim --author:<yourname> --appname:<application_name>
+
+This command replace and rename template strings of this repository.
 
 .. contents:: Table of contents
 
