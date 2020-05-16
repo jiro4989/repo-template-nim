@@ -34,6 +34,10 @@ jobs:
         if: "steps.tag.outputs.value != ''"
         run: sed -i 's/<tag>/${{ steps.tag.outputs.value }}/' .github/release-drafter.yml
 
+      - name: Debug
+        if: "steps.tag.outputs.value != ''"
+        run: cat .github/release-drafter.yml
+
       # Create release draft.
       - uses: release-drafter/release-drafter@v5.3.1
         if: "steps.tag.outputs.value != ''"
