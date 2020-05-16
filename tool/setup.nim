@@ -20,5 +20,5 @@ let
 
 changeFile("APPNAME.nimble", &"{appName}.nimble", appName, author, now)
 changeFile("README.rst", "", appName, author, now)
-changeFile("src"/"APPNAME.nim", &"src"/"{appName}.nim", appName, author, now)
+changeFile("src"/"APPNAME.nim", "src" / &"{appName}.nim", appName, author, now)
 changeFile("tests"/"test1.nim", "", appName, author, now)
