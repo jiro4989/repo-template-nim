@@ -8,6 +8,7 @@ on:
 
 env:
   APP_NAME: 'APPNAME'
+  NIM_VERSION: '1.2.0'
 
 jobs:
   skip:
@@ -30,8 +31,6 @@ jobs:
           - windows-latest
           - macOS-latest
     needs: before
-    env:
-      NIM_VERSION: 1.2.0
     steps:
       - uses: actions/checkout@v1
       - name: Cache choosenim
@@ -47,6 +46,8 @@ jobs:
           path: ~/.nimble
           key: ${{ runner.os }}-nimble-${{ hashFiles('*.nimble') }}
       - uses: jiro4989/setup-nim-action@v1.0.2
+        with:
+          nim-version: ${{ env.NIM_VERSION }}
       - run: nimble build -Y
       - run: nimble test -Y
       - name: Archive files
