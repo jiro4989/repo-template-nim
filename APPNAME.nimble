@@ -1,7 +1,7 @@
 # Package
 
 version       = "0.1.0"
-author        = "jiro4989"
+author        = "<author>"
 description   = "TODO"
 license       = "MIT"
 srcDir        = "src"
