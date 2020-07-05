@@ -1,0 +1,9 @@
+meta:
+  description: "$DESCRIPTION"
+  vendor: "$VENDOR"
+  maintainer: "$MAINTAINER"
+files:
+  "/usr/bin/$PACKAGE":
+    file: "$PACKAGE"
+    mode: "0755"
+    user: "root"
