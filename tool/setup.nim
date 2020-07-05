@@ -61,7 +61,7 @@ changeFile("README.rst", "", appName, author, now)
 changeFile("src"/"APPNAME.nim", "src" / &"{appName}.nim", appName, author, now)
 changeFile("tests"/"test1.nim", "", appName, author, now)
 changeFile("LICENSE", "", appName, author, now)
-changeFile(".github" / "workflows" / "main.yml", "", appName, author, now)
+changeFile(".github" / "workflows" / "release.yml", "", appName, author, now)
 removeFile("tool/setup")
 
 echo ""
