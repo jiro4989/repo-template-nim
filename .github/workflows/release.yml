@@ -1,15 +1,16 @@
 name: release
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - 'v*.*.*'
 
 env:
   APP_NAME: 'APPNAME'
   NIM_VERSION: 'stable'
 
 jobs:
-  release:
+  build-artifact:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -25,10 +26,79 @@ jobs:
       - run: nimble build -Y
       - name: Archive files
         run: nimble archive
-      - name: Release
-        if: startsWith(github.ref, 'refs/tags/')
-        uses: softprops/action-gh-release@v1
+      - uses: actions/upload-artifact@v2
         with:
-          files: 'dist/${{ env.APP_NAME }}_*.*'
+          name: artifact-${{ matrix.os }}
+          path: |
+            dist/*.tar.gz
+            dist/*.zip
+
+  create-release:
+    runs-on: ubuntu-latest
+    needs: build-artifact
+    steps:
+      - name: changelog
+        uses: scottbrenner/generate-changelog-action@1.0.0
+        id: Changelog
+        env:
+          REPO: ${{ github.repository }}
+
+      - name: Create Release
+        id: create-release
+        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body: |
+            ${{ steps.Changelog.outputs.changelog }}
+          draft: false
+          prerelease: false
+
+      - name: Write upload_url to file
+        run: echo '${{ steps.create-release.outputs.upload_url }}' > upload_url.txt
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: create-release
+          path: upload_url.txt
+
+  upload-release:
+    runs-on: ubuntu-latest
+    needs: create-release
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            asset_name: ${{ env.APP_NAME }}_linux.tar.gz
+            asset_content_type: application/gzip
+          - os: windows-latest
+            asset_name: ${{ env.APP_NAME }}_windows.zip
+            asset_content_type: application/zip
+          - os: macOS-latest
+            asset_name: ${{ env.APP_NAME }}_macosx.tar.gz
+            asset_content_type: application/gzip
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: artifact-${{ matrix.os }}
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: create-release
+
+      - id: vars
+        run: |
+          echo "::set-output name=upload_url::$(cat create-release/upload_url.txt)"
+
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.vars.outputs.upload_url }}
+          asset_path: ./artifact-${{ matrix.os }}/${{ matrix.asset_name }}
+          asset_name: ${{ matrix.asset_name }}
+          asset_content_type: ${{ matrix.asset_content_type }}
