@@ -37,11 +37,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-artifact
     steps:
-      - name: changelog
-        uses: scottbrenner/generate-changelog-action@1.0.0
-        id: Changelog
-        env:
-          REPO: ${{ github.repository }}
+      - name: Generate changelog
+        run: |
+          npm i -g generate-changelog
+          generate-changelog $* --file /tmp/changelog
 
       - name: Create Release
         id: create-release
@@ -51,8 +50,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
-          body: |
-            ${{ steps.Changelog.outputs.changelog }}
+          body_path: /tmp/changelog
           draft: false
           prerelease: false
 
