@@ -90,7 +90,7 @@ jobs:
 
       - id: vars
         run: |
-          echo "::set-output name=upload_url::$(cat create-release/upload_url.txt)"
+          echo "::set-output name=upload_url::$(cat upload_url.txt)"
 
       - name: Upload Release Asset
         id: upload-release-asset 
