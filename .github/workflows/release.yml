@@ -39,7 +39,7 @@ jobs:
     steps:
       - name: Generate changelog
         run: |
-          npm i -g generate-changelog
+          sudo npm i -g generate-changelog
           generate-changelog $* --file /tmp/changelog
 
       - name: Create Release
