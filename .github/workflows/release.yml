@@ -71,13 +71,13 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            asset_name: ${{ env.APP_NAME }}_linux.tar.gz
+            asset_name_suffix: linux.tar.gz
             asset_content_type: application/gzip
           - os: windows-latest
-            asset_name: ${{ env.APP_NAME }}_windows.zip
+            asset_name_suffix: windows.zip
             asset_content_type: application/zip
           - os: macOS-latest
-            asset_name: ${{ env.APP_NAME }}_macosx.tar.gz
+            asset_name_suffix: macosx.tar.gz
             asset_content_type: application/gzip
     steps:
       - uses: actions/download-artifact@v2
@@ -99,6 +99,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.vars.outputs.upload_url }}
-          asset_path: ./artifact-${{ matrix.os }}/${{ matrix.asset_name }}
-          asset_name: ${{ matrix.asset_name }}
+          asset_path: ./artifact-${{ matrix.os }}/${{ env.APP_NAME }}_${{ matrix.asset_name_suffix }}
+          asset_name: ${{ env.APP_NAME }}_${{ matrix.asset_name_suffix }}
           asset_content_type: ${{ matrix.asset_content_type }}
