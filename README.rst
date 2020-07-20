@@ -35,9 +35,26 @@ LICENSE
 
 MIT
 
+Development
+===========
+
+Release workflow
+^^^^^^^^^^^^^^^^
+
+GitHub Action runs when you pushed new tags.
+GitHub Action creates a new release and upload your assets.
+
+Release workflows:
+
+|image-release-workflow|
+
+Details, see `release.yml <./.github/workflows/release.yml>`_.
+
 .. |gh-actions| image:: https://github.com/jiro4989/APPNAME/workflows/build/badge.svg
    :target: https://github.com/jiro4989/APPNAME/actions
 .. |nimble-version| image:: https://nimble.directory/ci/badges/APPNAME/version.svg
    :target: https://nimble.directory/ci/badges/APPNAME/nimdevel/output.html
 .. |nimble-install| image:: https://nimble.directory/ci/badges/APPNAME/nimdevel/status.svg
    :target: https://nimble.directory/ci/badges/APPNAME/nimdevel/output.html
+
+.. |image-release-workflow| image:: https://user-images.githubusercontent.com/13825004/87944618-9897fc00-cada-11ea-9401-74167f04b5c4.png

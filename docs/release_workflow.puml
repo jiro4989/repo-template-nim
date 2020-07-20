@@ -1,0 +1,50 @@
+@startuml
+
+start
+
+partition build {
+  fork
+    : build-artifact ;
+    fork
+      : build on ubuntu ;
+    fork again
+      : build on windows ;
+    fork again
+      : build on macOS ;
+    end fork
+  fork again
+    : build-linux-packages;
+    fork
+      : build debian package ;
+    fork again
+      : build rpm package ;
+    end fork
+  end fork
+
+}
+
+: create release ;
+
+partition upload {
+  fork
+    : upload-release ;
+    fork
+      : upload binary for linux ;
+    fork again
+      : upload binary for windows ;
+    fork again
+      : upload binary for macOS ;
+    end fork
+  fork again
+    : upload-linux-packages ;
+    fork
+      : upload debian package ;
+    fork again
+      : upload rpm package ;
+    end fork
+  end fork
+}
+
+end
+
+@enduml
