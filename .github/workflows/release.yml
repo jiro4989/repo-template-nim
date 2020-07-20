@@ -61,7 +61,7 @@ jobs:
           arch: 'amd64'
           desc: 'TODO'
 
-      - uses: jiro4989/build-rpm-action@v1
+      - uses: jiro4989/build-rpm-action@v2
         with:
           summary: 'TODO'
           package: ${{ env.APP_NAME }}
