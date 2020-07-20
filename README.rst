@@ -42,6 +42,16 @@ Release workflow
 ^^^^^^^^^^^^^^^^
 
 GitHub Action runs when you pushed new tags.
+
+.. code-block:: shell
+
+   $ git tag <new_tag>
+   $ git push origin <new_tag>
+
+   or
+
+   $ git push origin --tags
+
 GitHub Action creates a new release and upload your assets.
 
 Release workflows:
