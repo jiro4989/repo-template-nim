@@ -43,9 +43,6 @@ jobs:
           nim-version: ${{ env.NIM_VERSION }}
       - run: nimble build -Y -d:release
 
-      - name: Set tag
-        id: vars
-        run: echo ::set-output name=tag::${GITHUB_REF:10}
       - name: create sample script
         run: |
           mkdir -p .debpkg/usr/bin
@@ -57,7 +54,7 @@ jobs:
           package: ${{ env.APP_NAME }}
           package_root: .debpkg
           maintainer: ${{ env.MAINTAINER }}
-          version: ${{ steps.vars.outputs.tag }}
+          version: ${{ github.ref }}
           arch: 'amd64'
           desc: 'TODO'
 
@@ -67,7 +64,7 @@ jobs:
           package: ${{ env.APP_NAME }}
           package_root: .rpmpkg
           maintainer: ${{ env.MAINTAINER }}
-          version: ${{ steps.vars.outputs.tag }}
+          version: ${{ github.ref }}
           arch: 'x86_64'
           desc: 'TODO'
 
