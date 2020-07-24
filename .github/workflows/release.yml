@@ -9,6 +9,7 @@ env:
   APP_NAME: 'APPNAME'
   NIM_VERSION: 'stable'
   MAINTAINER: 'MAINTAINER'
+  DESC: 'TODO'
 
 jobs:
   build-artifact:
@@ -56,17 +57,17 @@ jobs:
           maintainer: ${{ env.MAINTAINER }}
           version: ${{ github.ref }}
           arch: 'amd64'
-          desc: 'TODO'
+          desc: '${{ env.DESC }}'
 
       - uses: jiro4989/build-rpm-action@v2
         with:
-          summary: 'TODO'
+          summary: '${{ env.DESC }}'
           package: ${{ env.APP_NAME }}
           package_root: .rpmpkg
           maintainer: ${{ env.MAINTAINER }}
           version: ${{ github.ref }}
           arch: 'x86_64'
-          desc: 'TODO'
+          desc: '${{ env.DESC }}'
 
       - uses: actions/upload-artifact@v2
         with:
