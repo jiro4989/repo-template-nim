@@ -26,8 +26,23 @@ jobs:
         with:
           nim-version: ${{ env.NIM_VERSION }}
       - run: nimble build -Y -d:release
-      - name: Archive files
-        run: nimble archive
+      - name: Create artifact
+        run: |
+          os="${{ runner.os }}"
+          assets="${{ env.APP_NAME }}_${os,,}"
+          echo "$assets"
+          mkdir "dist/$assets"
+          cp -r bin LICENSE README.* "dist/$assets/"
+          (
+            cd dist
+            if [[ "${{ runner.os }}" == Windows ]]; then
+              7z a "$assets.zip" "$assets"
+            else
+              tar czf "$assets.tarlgz" "$assets"
+            fi
+            ls -lah *.*
+          )
+        shell: bash
       - uses: actions/upload-artifact@v2
         with:
           name: artifact-${{ matrix.os }}
