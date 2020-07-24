@@ -144,7 +144,7 @@ jobs:
             asset_name_suffix: windows.zip
             asset_content_type: application/zip
           - os: macOS-latest
-            asset_name_suffix: macosx.tar.gz
+            asset_name_suffix: macos.tar.gz
             asset_content_type: application/gzip
     steps:
       - uses: actions/download-artifact@v2
