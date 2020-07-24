@@ -31,7 +31,7 @@ jobs:
           os="${{ runner.os }}"
           assets="${{ env.APP_NAME }}_${os,,}"
           echo "$assets"
-          mkdir "dist/$assets"
+          mkdir -p "dist/$assets"
           cp -r bin LICENSE README.* "dist/$assets/"
           (
             cd dist
