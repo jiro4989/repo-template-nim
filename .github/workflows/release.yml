@@ -29,7 +29,7 @@ jobs:
       - name: Create artifact
         run: |
           os="${{ runner.os }}"
-          assets="${{ env.APP_NAME }}_${os,,}"
+          assets="${{ env.APP_NAME }}_$(echo "${{ runner.os }}" | tr '[:upper:]' '[:lower:]')"
           echo "$assets"
           mkdir -p "dist/$assets"
           cp -r bin LICENSE README.* "dist/$assets/"
