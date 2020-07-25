@@ -63,7 +63,7 @@ Config files are `.chglog <./.chglog>`_.
 
 Details, see `release.yml <./.github/workflows/release.yml>`_.
 
-.. |gh-actions| image:: https://github.com/jiro4989/APPNAME/workflows/build/badge.svg
+.. |gh-actions| image:: https://github.com/jiro4989/APPNAME/workflows/test/badge.svg
    :target: https://github.com/jiro4989/APPNAME/actions
 .. |nimble-version| image:: https://nimble.directory/ci/badges/APPNAME/version.svg
    :target: https://nimble.directory/ci/badges/APPNAME/nimdevel/output.html
