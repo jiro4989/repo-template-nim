@@ -9,6 +9,7 @@ env:
   APP_NAME: 'APPNAME'
   NIM_VERSION: 'stable'
   MAINTAINER: 'MAINTAINER'
+  RELEASE_FILES: bin LICENSE README.*
   DESC: 'TODO'
 
 jobs:
@@ -32,7 +33,7 @@ jobs:
           assets="${{ env.APP_NAME }}_$(echo "${{ runner.os }}" | tr '[:upper:]' '[:lower:]')"
           echo "$assets"
           mkdir -p "dist/$assets"
-          cp -r bin LICENSE README.* "dist/$assets/"
+          cp -r ${{ env.RELEASE_FILES }} "dist/$assets/"
           (
             cd dist
             if [[ "${{ runner.os }}" == Windows ]]; then
