@@ -29,7 +29,6 @@ jobs:
       - run: nimble build -Y -d:release
       - name: Create artifact
         run: |
-          os="${{ runner.os }}"
           assets="${{ env.APP_NAME }}_$(echo "${{ runner.os }}" | tr '[:upper:]' '[:lower:]')"
           echo "$assets"
           mkdir -p "dist/$assets"
