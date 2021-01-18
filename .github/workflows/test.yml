@@ -2,7 +2,13 @@ name: test
 
 on:
   push:
+    paths-ignore:
+      - 'LICENSE'
+      - 'README.*'
   pull_request:
+    paths-ignore:
+      - 'LICENSE'
+      - 'README.*'
 
 env:
   NIM_VERSION: 'stable'
